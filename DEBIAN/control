@@ -1,0 +1,7 @@
+Package: vane-branding
+Version: 1.0.0
+Section: misc
+Priority: required
+Architecture: all
+Maintainer: Vane OS Team <aadhi3579@outlook.com>
+Description: Core branding and system configuration for Vane.
