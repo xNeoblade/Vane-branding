@@ -1,0 +1,29 @@
+name: Vane Build Factory
+
+on:
+  push:
+    branches: [ "main" ]
+  workflow_dispatch: # This allows you to run it manually
+
+jobs:
+  package:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set Script Permissions
+        run: |
+          chmod 755 DEBIAN/preinst
+          chmod 755 DEBIAN/postinst
+
+      - name: Build Debian Package
+        run: |
+          # This command packs everything into the .deb
+          dpkg-deb --root-owner-group --build . vane-branding.deb
+
+      - name: Upload Vane Package
+        uses: actions/upload-artifact@v4
+        with:
+          name: Vane-OS-Branding
+          path: vane-branding.deb
